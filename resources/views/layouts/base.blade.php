@@ -61,7 +61,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/utilisateur">
+                <a class="nav-link" href="{{route('user.index')}}">
                     <i class="fas fa-fw fa-user-alt"></i>
                     <span>Utilisateurs</span></a>
             </li>
@@ -160,6 +160,17 @@
                         {{ session('success') }}
                     </div>
                 @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 @yield('content')
 
 
