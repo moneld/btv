@@ -10,11 +10,12 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //
+        return view('backend.services.index',['services' => Service::all()]);
     }
 
     /**
@@ -36,6 +37,16 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'libelle' => 'required',
+        ]);
+
+        Service::create([
+            'libelle' => $request->libelle
+        ]);
+
+        return back()->withSuccess('Service ajouté avec succès.');
+
     }
 
     /**
@@ -70,6 +81,9 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         //
+        $service->libelle = $request->libelle;
+        $service->save();
+        return back()->withSuccess('Service modifié avec succès.');
     }
 
     /**
@@ -81,5 +95,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+        $service->delete();
+        return back()->withSuccess('Service supprimé avec succès.');
     }
 }

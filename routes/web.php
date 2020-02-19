@@ -28,3 +28,9 @@ Route::post('/utilisateur','UserController@store')->name('user.store');
 Route::post('/utilisateur/change-password','UserController@changePassword')->name('user.changePassword');
 Route::put('/utilisateur/{user}','UserController@update')->name('user.update');
 Route::delete('/utilisateur/{user}','UserController@destroy')->name('user.delete');
+
+
+Route::get('/service','ServiceController@index')->name('service.index');
+Route::post('/service','ServiceController@store')->name('service.store');
+Route::put('/service/{service}','ServiceController@update')->name('service.update');
+Route::delete('/service/{service}','ServiceController@destroy')->name('service.delete');

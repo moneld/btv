@@ -61,6 +61,13 @@
 
 
     @can('isAdmin')
+        <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('service.index')}}">
+                    <i class="fas fa-fw fa-user-alt"></i>
+                    <span>Services</span></a>
+            </li>
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('user.index')}}">
