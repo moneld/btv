@@ -37,7 +37,7 @@
                                             <td>{{$user->prenom}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->date_naissance}}</td>
-                                            <td>{{$user->service}}</td>
+                                            <td>{{$user->service->libelle ?? 'Admin'}}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 {{--
@@ -91,15 +91,13 @@
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="service">Service</label>
-                                                                    <input type="text" name="service" id="service"  value="{{$user->service}}" class="form-control" required>
-
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label for="role">Role</label>
-                                                                    <select name="role" id="role"  class="form-control" required>
-                                                                        <option value="user" {{$user->role === 'user' ? 'selected' : ''}}>Utilisateur</option>
-                                                                        <option value="admin" {{$user->role === 'admin' ? 'selected' : ''}} >Administrateur</option>
+                                                                    <select name="service_id" id="service_id" class="form-control" >
+                                                                        <option value="" selected> Admin</option>
+                                                                        @foreach($services as $service)
+                                                                         <option value="{{$service->id}}" {{($user->service !== null && $service->id === $user->service->id) ? 'selected' : '' }}>{{$service->libelle}}</option>
+                                                                        @endforeach
                                                                     </select>
+
                                                                 </div>
                                                             </div>
 
@@ -133,8 +131,8 @@
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                                            <button type="submit" class="btn btn-success">Ajouter</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                            <button type="submit" class="btn btn-success">OUI</button>
                                                         </div>
 
                                                     </form>
@@ -194,16 +192,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="service">Service</label>
-                                <input type="text" name="service" id="service" class="form-control" required>
+                                <select name="service_id" id="service_id" class="form-control" >
+                                    <option value="" selected> Admin</option>
+                                    @foreach($services as $service)
+                                        <option value="{{$service->id}}">{{$service->libelle}}</option>
+                                    @endforeach
+                                </select>
 
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="role">Role</label>
-                                <select name="role" id="role"  class="form-control" required>
-                                    <option value="admin">Administrateur</option>
-                                    <option value="user">Utilisateur</option>
-                                </select>
-                            </div>
+
                         </div>
 
                     </div>

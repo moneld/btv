@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use App\Notifications\UserCreate;
 use App\User;
 
@@ -18,8 +19,10 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
-        return view('backend.utilisateurs.index',compact('users'));
+        $users = User::with('service')->get();
+        $services = Service::select('id','libelle')->get();
+
+        return view('backend.utilisateurs.index',compact('users','services'));
     }
 
     /**
@@ -48,7 +51,6 @@ class UserController extends Controller
             'prenom' => ['required', 'string',  'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'date_naissance' => ['required', 'date'],
-            'service' => ['required', 'string',  'max:255'],
         ]);
 
       $password = Str::random(12);
@@ -59,14 +61,13 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->date_naissance = $request->date_naissance;
         $user->password = bcrypt($password);
-        $user->service = $request->service;
-        $user->role = $request->role;
+        $user->service_id = $request->service_id;
 
         $user->save();
 
         $user->notify(new UserCreate($request->prenom, $request->email,$password));
 
-        return back()->with('success','Utilisateur ajouté avec succès.');
+        return back()->withSuccess('Utilisateur ajouté avec succès.');
 
     }
 
@@ -109,19 +110,17 @@ class UserController extends Controller
             'prenom' => ['required', 'string',  'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'date_naissance' => ['required', 'date'],
-            'service' => ['required', 'string',  'max:255'],
         ]);
 
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
         $user->email = $request->email;
         $user->date_naissance = $request->date_naissance;
-        $user->service = $request->service;
-        $user->role = $request->role;
+        $user->service_id = $request->service_id;
 
         $user->save();
 
-        return back()->with('success','Utilisateur modifié avec succès.');
+        return back()->withSuccess('Utilisateur modifié avec succès.');
     }
 
     /**
@@ -134,6 +133,6 @@ class UserController extends Controller
     {
         //
         $user->delete();
-        return back()->with('success','Utilisateur supprimé avec succès.');
+        return back()->withSuccess('Utilisateur supprimé avec succès.');
     }
 }

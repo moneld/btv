@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ListeTicket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListeTicketController extends Controller
 {
@@ -15,7 +16,13 @@ class ListeTicketController extends Controller
     //
     public function index()
     {
-       $listes = ListeTicket::all();
+       $listes = null;
+
+       if(Auth::user()->service !== null){
+           $listes = ListeTicket::where('service_id',Auth::user()->service)->get();
+       }else{
+           $listes = ListeTicket::all();
+       }
         return view('backend.liste-ticket.index',compact('listes'));
     }
 
@@ -28,6 +35,6 @@ class ListeTicketController extends Controller
     {
         $liste->statut = true;
         $liste->save();
-        return back()->with('success','Ticket validé avec succès.');
+        return back()->withSuccess('Ticket validé avec succès.');
     }
 }

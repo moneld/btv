@@ -14,5 +14,6 @@ $factory->define(ListeTicket::class, function (Faker $faker) {
         'date' => $faker->date(),
         'type' => $faker->word,
         'statut' => $faker->randomElement(['0','1']),
+        'service_id' => $faker->randomElement(['1','2']),
     ];
 });

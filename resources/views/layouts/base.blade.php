@@ -58,14 +58,14 @@
             </li>
 
 
-
+@if(Auth::user()->service === null)
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('user.index')}}">
                     <i class="fas fa-fw fa-user-alt"></i>
                     <span>Utilisateurs</span></a>
             </li>
-
+@endif
 
 
 
@@ -155,21 +155,7 @@
 
 
 
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 @yield('content')
 
@@ -218,7 +204,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{asset('assets/js/sb-admin-2.min.js')}}"></script>
-
+@include('sweetalert::alert')
 </body>
 
 </html>

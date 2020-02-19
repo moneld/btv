@@ -8,4 +8,9 @@ class ListeTicket extends Model
 {
     //
     protected $guarded = [];
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

@@ -47,9 +47,12 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <img src="{{asset('assets/img/logo/logo.png')}}" class="mb-4" width="100" height="100" alt="">
-                                        <h1 class="h4 text-gray-900 mb-4">Connexion</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Mot de passe</h1>
+                                        <p>
+
+                                        </p>
                                     </div>
-                                    <form action="{{ route('login') }}" method="post" class="user">
+                                    <form action="{{ route('password.email') }}" method="post" class="user">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user  @error('email') is-invalid @enderror" id="email" name="email"  placeholder="Email">
@@ -59,32 +62,12 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="password" name="password" placeholder="Mot de passe">
 
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
 
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                <label class="custom-control-label" for="remember">Se souvenir de moi</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-success btn-user btn-block">Connexion</button>
+                                        <button type="submit" class="btn btn-success btn-user btn-block"> {{ __('Send Password Reset Link') }}</button>
                                     </form>
 
 
-                                    <div class="text-center">
-                                        <div class="text-center mt-2">
-                                            <a class="small" href="{{ route('password.request') }}#">Mot de passe oublié ?</a>
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
