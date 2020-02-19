@@ -25,5 +25,6 @@ Route::get('/liste-ticket/{liste}/valider','ListeTicketController@valider')->nam
 
 Route::get('/utilisateur','UserController@index')->name('user.index');
 Route::post('/utilisateur','UserController@store')->name('user.store');
+Route::post('/utilisateur/change-password','UserController@changePassword')->name('user.changePassword');
 Route::put('/utilisateur/{user}','UserController@update')->name('user.update');
 Route::delete('/utilisateur/{user}','UserController@destroy')->name('user.delete');

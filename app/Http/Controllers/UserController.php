@@ -7,6 +7,8 @@ use App\Notifications\UserCreate;
 use App\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -62,6 +64,7 @@ class UserController extends Controller
         $user->date_naissance = $request->date_naissance;
         $user->password = bcrypt($password);
         $user->service_id = $request->service_id;
+        $user->role = $request->role;
 
         $user->save();
 
@@ -117,6 +120,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->date_naissance = $request->date_naissance;
         $user->service_id = $request->service_id;
+        $user->role = $request->role;
 
         $user->save();
 
@@ -134,5 +138,19 @@ class UserController extends Controller
         //
         $user->delete();
         return back()->withSuccess('Utilisateur supprimé avec succès.');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $this->validate($request,[
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->password = bcrypt($request->password);
+        $user->default_password_change = true;
+        $user->save();
+
+        return redirect()->route('liste-ticket.index')->withSuccess('Mot de passe modifier avec succès');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ListeTicket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ListeTicketController extends Controller
 {
@@ -16,14 +17,21 @@ class ListeTicketController extends Controller
     //
     public function index()
     {
-       $listes = null;
 
-       if(Auth::user()->service !== null){
-           $listes = ListeTicket::where('service_id',Auth::user()->service)->get();
-       }else{
-           $listes = ListeTicket::all();
-       }
-        return view('backend.liste-ticket.index',compact('listes'));
+        if (Gate::allows('passwordChange')) {
+            $listes = null;
+
+            if(Auth::user()->service !== null){
+                $listes = ListeTicket::where('service_id',Auth::user()->service_id)->get();
+            }else{
+                $listes = ListeTicket::all();
+            }
+            return view('backend.liste-ticket.index',compact('listes'));
+        }else{
+            return view('backend.changeDefaultPassword');
+        }
+
+
     }
 
     public function show(ListeTicket $liste)

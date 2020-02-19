@@ -58,14 +58,17 @@
             </li>
 
 
-@if(Auth::user()->service === null)
+
+
+    @can('isAdmin')
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('user.index')}}">
                     <i class="fas fa-fw fa-user-alt"></i>
                     <span>Utilisateurs</span></a>
             </li>
-@endif
+        @endcan
+
 
 
 

@@ -92,19 +92,28 @@
                                                                 <div class="form-group col-md-6">
                                                                     <label for="service">Service</label>
                                                                     <select name="service_id" id="service_id" class="form-control" >
-                                                                        <option value="" selected> Admin</option>
                                                                         @foreach($services as $service)
                                                                          <option value="{{$service->id}}" {{($user->service !== null && $service->id === $user->service->id) ? 'selected' : '' }}>{{$service->libelle}}</option>
                                                                         @endforeach
                                                                     </select>
 
                                                                 </div>
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="role">Role</label>
+                                                                    <select name="role" id="role" class="form-control" >
+                                                                        <option value="user" selected> Utilisateur</option>
+                                                                        <option value="admin" selected> Administrateur</option>
+                                                                    </select>
+
+                                                                </div>
+
                                                             </div>
 
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                                            <button type="submit" class="btn btn-success">Ajouter</button>
+                                                            <button type="submit" class="btn btn-success">Modifier</button>
                                                         </div>
 
                                                     </form>
@@ -197,6 +206,14 @@
                                     @foreach($services as $service)
                                         <option value="{{$service->id}}">{{$service->libelle}}</option>
                                     @endforeach
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="role">Role</label>
+                                <select name="role" id="role" class="form-control" >
+                                    <option value="user" selected> Utilisateur</option>
+                                    <option value="admin" selected> Administrateur</option>
                                 </select>
 
                             </div>
