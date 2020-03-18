@@ -51,31 +51,9 @@
                                                 @if($liste->statut === 0)
                                                     <a href="{{route('liste-ticket.valider',$liste->id)}}" class="btn btn-success"><i class="fas fa-fw fa-check"></i></a>
                                                 @endif
-                                                <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#image-{{$liste->id}}" ><i class="fas fa-fw fa-search"></i></a>
                                             </div>
                                         </td>
                                     </tr>
-
-                                    <!-- Afficher image -->
-                                    <div class="modal fade" id="image-{{$liste->id}}" tabindex="-1" role="dialog" aria-labelledby="image-{{$liste->id}}Label" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="image-{{$liste->id}}Label">Image </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img src="{{asset('assets/img/logo/logo.png')}}" alt="" srcset="">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 @endforeach
 
 

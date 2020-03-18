@@ -15,27 +15,37 @@
                         </div>
                     </div>
                     <div class="card-body">
-                       <h3>Description :</h3>
-                        <p>{{$liste->description}}</p>
-                        <h3>Emplacement :</h3>
-                        <p>{{$liste->emplacement}}</p>
-                        <h3>Lieu du dépot/Catégorie anomalie :</h3>
-                        <p>{{$liste->lieu_depot}}</p>
-                        <h3>Date :</h3>
-                        <p>{{$liste->date}}</p>
-                        <h3>Type :</h3>
-                        <p>{{$liste->type}}</p>
+                     
 
-                        <h3>Statut :</h3>
-                        <p>
-                            @if($liste->statut === 0)
-                                <span class="badge badge-warning small">En cours</span>
-                            @else
-                                <span class="badge badge-success small">Terminé</span>
-                            @endif
-                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Description :</h3>
+                                <p>{{$liste->description}}</p>
+                                <h3>Emplacement :</h3>
+                                <p>{{$liste->emplacement}}</p>
+                                <h3>Lieu du dépot/Catégorie anomalie :</h3>
+                                <p>{{$liste->lieu_depot}}</p>
+                                <h3>Date :</h3>
+                                <p>{{$liste->date}}</p>
+                                <h3>Type :</h3>
+                                <p>{{$liste->type}}</p>
+        
+                                <h3>Statut :</h3>
+                                <p>
+                                    @if($liste->statut === 0)
+                                        <span class="badge badge-warning small">En cours</span>
+                                    @else
+                                        <span class="badge badge-success small">Terminé</span>
+                                    @endif
+                                </p>
+        
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Image </h3>
+                                <img src="{{asset('assets/img/logo/logo.png')}}" alt="" srcset="">
 
-
+                            </div>
+                        </div>
 
                     </div>
                 </div>

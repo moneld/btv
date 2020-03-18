@@ -19,8 +19,6 @@
     <link href="{{asset('assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-
-
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/css/sb-admin-2.css')}}" rel="stylesheet">
 
@@ -136,8 +134,8 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline small text-gray-600">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                <span class="mr-2 d-none d-lg-inline small text-gray-600">{{Auth::user()->nom}} {{Auth::user()->prenom}}</span>
+                                <img data-name="{{Auth::user()->nom}} " class="img-profile rounded-circle profile"/> 
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -215,6 +213,12 @@
 <!-- Custom scripts for all pages-->
 <script src="{{asset('assets/js/sb-admin-2.min.js')}}"></script>
 @include('sweetalert::alert')
+
+<script src="https://cdn.jsdelivr.net/npm/initial-js@0.3.4/dist/initial.min.js"></script>
+
+<script>
+     $('.profile').initial(); 
+</script>
 </body>
 
 </html>
