@@ -34,8 +34,10 @@
                                 <p>
                                     @if($liste->statut === 0)
                                         <span class="badge badge-warning small">En cours</span>
-                                    @else
+                                    @elseif($liste->statut === 1)
                                         <span class="badge badge-success small">Terminé</span>
+                                    @elseif($liste->statut === 2)
+                                        <span class="badge badge-danger small">Rejeté</span>
                                     @endif
                                 </p>
         

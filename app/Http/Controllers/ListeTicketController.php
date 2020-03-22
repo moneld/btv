@@ -45,4 +45,10 @@ class ListeTicketController extends Controller
         $liste->save();
         return back()->withSuccess('Ticket validé avec succès.');
     }
+    public function rejete(ListeTicket $liste)
+    {
+        $liste->statut = 2;
+        $liste->save();
+        return back()->withSuccess('Ticket rejeté avec succès.');
+    }
 }

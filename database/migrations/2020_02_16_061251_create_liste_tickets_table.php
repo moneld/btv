@@ -21,7 +21,7 @@ class CreateListeTicketsTable extends Migration
             $table->date('date');
             $table->string('type');
             $table->unsignedBigInteger('service_id');
-            $table->boolean('statut')->default(false);
+            $table->integer('statut')->default('0');
             $table->timestamps();
         });
     }
