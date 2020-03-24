@@ -20,6 +20,7 @@ class CreateListeTicketsTable extends Migration
             $table->text('lieu_depot');
             $table->date('date');
             $table->string('type');
+            $table->string('affecter')->nullable();
             $table->unsignedBigInteger('service_id');
             $table->integer('statut')->default('0');
             $table->timestamps();

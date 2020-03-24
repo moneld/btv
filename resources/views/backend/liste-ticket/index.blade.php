@@ -55,12 +55,52 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{route('liste-ticket.show',$liste->id)}}" class="btn btn-primary" ><i class="fas fa-fw fa-eye"></i></a>
-                                                        <a href="{{route('liste-ticket.valider',$liste->id)}}" class="btn btn-success"><i class="fas fa-fw fa-check"></i></a>
-                                                        <a href="{{route('liste-ticket.rejete',$liste->id)}}" class="btn btn-danger"><i class="fas fa-fw fa-ban"></i></a>
+                                                        <a href="{{route('liste-ticket.show',$liste->id)}}" class="btn btn-primary"  title="Voir"><i class="fas fa-fw fa-eye"></i></a>
+                                                        @if($liste->affecter === null)
+                                                            <a href="#" class="btn btn-warning"  title="Affecter" data-toggle="modal" data-target="#modifier-{{$liste->id}}"><i class="fas fa-fw fa-pen"></i></a>
+                                                        @endif
+                                                        <a href="{{route('liste-ticket.valider',$liste->id)}}" class="btn btn-success"  title="Archiver"><i class="fas fa-fw fa-check"></i></a>
+                                                        <a href="{{route('liste-ticket.rejete',$liste->id)}}" class="btn btn-danger"  title="Refuser"><i class="fas fa-fw fa-ban"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
+
+
+
+                                        <!-- modifer -->
+                                        <div class="modal fade" id="modifier-{{$liste->id}}" tabindex="-1" role="dialog" aria-labelledby="modifier-{{$liste->id}}Label" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modifier-{{$liste->id}}Label">Affecter un le ticket</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{route('liste-ticket.affecter',$liste->id)}}" method="post">
+                                                        <div class="modal-body">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="nom">Nom et prénom</label>
+                                                                    <input type="text" name="nom" id="nom" class="form-control" required>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                            <button type="submit" class="btn btn-success">Affecter</button>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         @endforeach
         
         
@@ -93,11 +133,11 @@
                                                 <td>{{$liste->date}}</td>
                                                 <td>{{$liste->type}}</td>
                                                 <td>
-                                                    <span class="badge badge-success small">Archivé</span>
+                                                    <span class="badge badge-success small">Archiver</span>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{route('liste-ticket.show',$liste->id)}}" class="btn btn-primary" ><i class="fas fa-fw fa-eye"></i></a>
+                                                        <a href="{{route('liste-ticket.show',$liste->id)}}" class="btn btn-primary"  title="Voir"><i class="fas fa-fw fa-eye"></i></a>
 
                                                     </div>
                                                 </td>
@@ -134,11 +174,11 @@
                                                 <td>{{$liste->date}}</td>
                                                 <td>{{$liste->type}}</td>
                                                 <td>
-                                                    <span class="badge badge-danger small">Rejeté</span>
+                                                    <span class="badge badge-danger small">Refuser</span>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{route('liste-ticket.show',$liste->id)}}" class="btn btn-primary" ><i class="fas fa-fw fa-eye"></i></a>
+                                                        <a href="{{route('liste-ticket.show',$liste->id)}}" class="btn btn-primary" title="Voir"><i class="fas fa-fw fa-eye"></i></a>
 
                                                     </div>
                                                 </td>
