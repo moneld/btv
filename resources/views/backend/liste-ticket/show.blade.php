@@ -39,11 +39,13 @@
                                 <h3>Statut :</h3>
                                 <p>
                                     @if($liste->statut === 0)
-                                        <span class="badge badge-warning small">En cours</span>
+                                        <span class="badge badge-primary small">Nouveau</span>
                                     @elseif($liste->statut === 1)
-                                        <span class="badge badge-success small">Terminé</span>
+                                        <span class="badge badge-warning small">En cours</span>
                                     @elseif($liste->statut === 2)
-                                        <span class="badge badge-danger small">Rejeté</span>
+                                        <span class="badge badge-success small">Archiver</span>
+                                    @elseif($liste->statut === 3)
+                                        <span class="badge badge-danger small">Refuser</span>
                                     @endif
                                 </p>
                                 <h3>Image </h3>

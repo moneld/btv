@@ -41,15 +41,15 @@ class ListeTicketController extends Controller
 
     public function valider(ListeTicket $liste)
     {
-        $liste->statut = true;
+        $liste->statut = 2;
         $liste->save();
-        return back()->withSuccess('Ticket validé avec succès.');
+        return back()->withSuccess('Ticket archivé avec succès.');
     }
     public function rejete(ListeTicket $liste)
     {
-        $liste->statut = 2;
+        $liste->statut = 3;
         $liste->save();
-        return back()->withSuccess('Ticket rejeté avec succès.');
+        return back()->withSuccess('Ticket refusé avec succès.');
     }
 
     public function affecter(ListeTicket $liste, Request $request)
@@ -60,5 +60,12 @@ class ListeTicketController extends Controller
         $liste->affecter = $request->nom;
         $liste->save();
         return back()->withSuccess('Ticket affecté avec succès.');
+    }
+
+    public function accepter(ListeTicket $liste)
+    {
+        $liste->statut = 1;
+        $liste->save();
+        return back()->withSuccess('Ticket accepté avec succès.');
     }
 }

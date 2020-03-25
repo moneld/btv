@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/liste-ticket','ListeTicketController@index')->name('liste-ticket.index');
 Route::get('/liste-ticket/{liste}/voir','ListeTicketController@show')->name('liste-ticket.show');
+Route::get('/liste-ticket/{liste}/accepter','ListeTicketController@accepter')->name('liste-ticket.accepter');
 Route::get('/liste-ticket/{liste}/valider','ListeTicketController@valider')->name('liste-ticket.valider');
 Route::get('/liste-ticket/{liste}/rejete','ListeTicketController@rejete')->name('liste-ticket.rejete');
 Route::put('/liste-ticket/{liste}/affecter','ListeTicketController@affecter')->name('liste-ticket.affecter');
