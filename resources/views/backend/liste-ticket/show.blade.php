@@ -29,18 +29,23 @@
                                 <p>{{$liste->date}}</p>
                                 <h3>Type :</h3>
                                 <p>{{$liste->type}}</p>
+                            
+        
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Affecter :</h3>
+                                <p>{{$liste->affecter}}</p>
         
                                 <h3>Statut :</h3>
                                 <p>
                                     @if($liste->statut === 0)
                                         <span class="badge badge-warning small">En cours</span>
-                                    @else
+                                    @elseif($liste->statut === 1)
                                         <span class="badge badge-success small">Terminé</span>
+                                    @elseif($liste->statut === 2)
+                                        <span class="badge badge-danger small">Rejeté</span>
                                     @endif
                                 </p>
-        
-                            </div>
-                            <div class="col-md-6">
                                 <h3>Image </h3>
                                 <img src="{{asset('assets/img/logo/logo.png')}}" alt="" srcset="">
 
